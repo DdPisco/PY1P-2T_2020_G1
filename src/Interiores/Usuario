@@ -13,11 +13,44 @@ public class Usuario {
     private Date fechaIncio;
     private double sueldo;
     
-    public Usuario(){
+     public Usuario(String nombre,String direccion,int telefono,String correo,Date fechaIncio,double sueldo,String username , String password){
+        this.nombre=nombre;
+        this.direccion=direccion;
+        this.telefono=telefono;
+        this.correo=correo;
+        this.fechaIncio= fechaIncio;
+        this.sueldo=sueldo;
+        this.username=username;
+        this.password=password;
         
     }
     public void iniciarSesion(){
         
+    }
+    public void setNombre(String nombre){
+        this.nombre=nombre;
+    }
+    
+    public String getNombre(){
+        
+        return this.nombre;
+    }
+    public void setDireccion(String direccion){
+        this.direccion=direccion;
+    }
+    
+    public String getDireccion(){
+        
+        return this.direccion;
+    }
+    
+    public void setTelefono(int telefono){
+        this.telefono=telefono;
+    }
+    
+    public int getTelefono(){
+        
+        return this.telefono;
     }
     
 }
