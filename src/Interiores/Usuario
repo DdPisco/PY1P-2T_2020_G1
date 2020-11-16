@@ -1,0 +1,23 @@
+import java.util.Date;
+/**
+ *
+ * @author nicol
+ */
+public class Usuario {
+    private String username;
+    private String password;
+    private String nombre;
+    private String direccion;
+    private int telefono;
+    private String correo;
+    private Date fechaIncio;
+    private double sueldo;
+    
+    public Usuario(){
+        
+    }
+    public void iniciarSesion(){
+        
+    }
+    
+}
