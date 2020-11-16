@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package proyecto1p2t_2020_g1;
+package Aplicacion;
 
 /**
  *
  * @author Dustin Pisco
  */
-public class PROYECTO1P2T_2020_G1 {
+public class Main {
 
     /**
      * @param args the command line arguments
