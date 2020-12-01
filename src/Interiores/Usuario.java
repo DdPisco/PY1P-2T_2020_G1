@@ -3,6 +3,7 @@ package Interiores;
 /**
  *
  * @author nicol
+ * //Aldo
  */
 public class Usuario extends Empleado {
     private String username;
