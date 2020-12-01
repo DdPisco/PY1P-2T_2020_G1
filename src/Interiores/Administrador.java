@@ -15,6 +15,7 @@ public class Administrador extends Usuario{
         String op = "";
     System.out.println("Bienvenido");
     do {
+        
       System.out.println("1. Registrar Empleado");
       System.out.println("2. Consultar y Registrar Veterinarias");
       System.out.println("3. Consultar y Registrar Gasto Veterinaria ");
@@ -22,6 +23,8 @@ public class Administrador extends Usuario{
       System.out.println("5. Enviar Correo a Interesados ");
       System.out.println("6. Cerrar Sesion");
       System.out.println("Ingrese opcion");
+      
+      
       op = sc.nextLine();
 
       switch (op) {
