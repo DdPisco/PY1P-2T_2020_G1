@@ -10,5 +10,7 @@ package Interiores;
  * @author Dustin Pisco
  */
 class Cliente {
-    
+    public Cliente(){
+        
+    }
 }
