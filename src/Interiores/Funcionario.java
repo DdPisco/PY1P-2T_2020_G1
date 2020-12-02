@@ -54,7 +54,12 @@ public class Funcionario extends Usuario{
     }
     
     public void registrarNuevoAnimal(){
-        
+        System.out.print("Ingrese Fecha de Ingreso: ");
+        System.out.print("Ingrese Nombre del Animal: ");
+        System.out.print("Ingrese Raza del Animal: ");
+        System.out.print("Ingrese Sexo del Animal: ");
+        System.out.print("Ingrese Peso del Animal: ");
+        System.out.print("Ingrese Observaciones: ");
     }
     public void consultarAnimales(){
         
