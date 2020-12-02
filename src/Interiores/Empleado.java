@@ -7,7 +7,7 @@ import java.util.Date;
  * @author nicol
  */
 public class Empleado {
-        private String nombre;
+    private String nombre;
     private String direccion;
     private int telefono;
     private String correo;
@@ -74,4 +74,5 @@ public class Empleado {
     public double getSueldo(){
         return this.sueldo;
     }
+    
 }

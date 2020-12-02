@@ -1,5 +1,7 @@
 package Interiores;
 
+import java.util.Scanner;
+
 /**
  *
  * @author nicol
@@ -8,7 +10,8 @@ package Interiores;
 public class Usuario extends Empleado {
     private String username;
     private String password;
-
+    Administrador admin=new Administrador();
+    Funcionario funci=new Funcionario();
     public Usuario(){
         
     }
@@ -28,9 +31,25 @@ public class Usuario extends Empleado {
     public String getPassword(){
         return this.password;
     }
-    public void iniciarSesion(){
-        
-    }
+    
+     @Override
+      public boolean equals(Object obj){
+          if(obj!= null){
+              if(obj instanceof Administrador){
+                  Administrador sector= (Administrador)obj;
+                  if (username.equals(admin.getUsuario())&& password.equals(admin.getPassword())){
+                  return true;    
+                  }
+              }else{
+              if(obj instanceof Funcionario){
+                  if (username.equals(funci.getUsuario())&& password.equals(funci.getPassword())){
+                  return true;
+                  }
+                  
+              }
+          }
+      } return false;
     
 }
+ }
 

@@ -13,7 +13,7 @@ public class Administrador extends Usuario{
     public void iniciarMenuOpAdmin(){
         sc=new Scanner(System.in);
         String op = "";
-    System.out.println("Bienvenido");
+    System.out.println("Bienvenido Usuario Administrador");
     do {
         
       System.out.println("1. Registrar Empleado");
@@ -45,7 +45,7 @@ public class Administrador extends Usuario{
         enviarCorreosAdopciones();
         break;
       case "6":
-        System.out.println("Adios");
+        System.out.println("Sesion Cerrada");
         break;  
       default:
         System.out.println("Opcion invalida");
