@@ -57,21 +57,26 @@ public class UI {
         String contrasenia=sc.nextLine();
         
         Usuario usu=new Usuario(usuario,contrasenia);
-        if (fd.getListUsuarios().contains(usu)){
-           
-            for(Usuario u:fd.getListUsuarios()){
-                if (usu.equals(u)){
-                    if(u instanceof Funcionario){
-                        System.out.println("CREDENCIALES VALIDAS");
-                        funci.iniciarMenuOpFun();
-                    }else{
-                        System.out.print("Su usuario no es Funcionario");
-                    }
+        do{
+            System.out.println("CREDENCIALES INVALIDAS");
+            System.out.println("Ingrese su Nombre de Usuario: ");
+            usuario=sc.nextLine();
+            System.out.println("Ingrese su Contrasenia;");
+            contrasenia=sc.nextLine();
+            usu=new Usuario(usuario,contrasenia);
+           }while(!fd.getListUsuarios().contains(usu));
+        
+        for(Usuario u:fd.getListUsuarios()){
+            if (usu.equals(u)){
+                if(u instanceof Funcionario){
+                    System.out.println("CREDENCIALES VALIDAS");
+                    funci.iniciarMenuOpFun();
+                }else{
+                    System.out.print("Su usuario no es Funcionario");
                 }
             }
-        }else{
-            System.out.println("CREDENCIALES INVALIDAS");
         }
+            
     }
     
     public void opcion2(){
@@ -81,20 +86,25 @@ public class UI {
         String contrasenia=sc.nextLine();
         
         Usuario usu=new Usuario(usuario,contrasenia);
-        if (fd.getListUsuarios().contains(usu)){
-            
-            for(Usuario u:fd.getListUsuarios()){
-                if (usu.equals(u)){
-                    if(u instanceof Administrador){
-                        System.out.println("CREDENCIALES VALIDAS");
-                        admin.iniciarMenuOpAdmin();
-                    }else{
-                        System.out.print("Su usuario no es Admninistrador");
-                    }
+        do{
+            System.out.println("CREDENCIALES INVALIDAS");
+            System.out.println("Ingrese su Nombre de Usuario: ");
+            usuario=sc.nextLine();
+            System.out.println("Ingrese su Contrasenia;");
+            contrasenia=sc.nextLine();
+            usu=new Usuario(usuario,contrasenia);
+           }while(!fd.getListUsuarios().contains(usu));
+        
+        for(Usuario u:fd.getListUsuarios()){
+            if (usu.equals(u)){
+                if(u instanceof Administrador){
+                    System.out.println("CREDENCIALES VALIDAS");
+                    admin.iniciarMenuOpAdmin();
+                }else{
+                    System.out.print("Su usuario no es Administrador");
                 }
             }
-        }else{
-            System.out.println("CREDENCIALES INVALIDAS");
         }
     }
 }
+
