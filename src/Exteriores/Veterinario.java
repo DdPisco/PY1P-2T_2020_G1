@@ -1,14 +1,47 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Exteriores;
 
 /**
  *
- * @author Dustin Pisco
+ * @author Aldo Mendoza
  */
 public class Veterinario {
+    private String nombre;
+    private String numero;
+    private String correo;
+
+    public Veterinario(String nombre, String numero, String correo) {
+        this.nombre = nombre;
+        this.numero = numero;
+        this.correo = correo;
+    }
+    
+    
+    // Getters
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getNumero() {
+        return numero;
+    }
+
+    public String getCorreo() {
+        return correo;
+    }
+    
+    // Setters
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setNumero(String numero) {
+        this.numero = numero;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+    
     
 }
