@@ -1,16 +1,18 @@
 package Interiores;
 
-import Interiores.Usuario;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
 
 /**
  *
  * @author nicol
  */
-public class Administrador extends Empleado{
+public class Administrador extends Usuario{
     private int cuentaBancaria;
-    public Scanner sc;
-    private Usuario user;
+    private Scanner sc;
+    private ArrayList<Empleados> ListaEmpleados;
+    
     public void iniciarMenuOpAdmin(){
         sc=new Scanner(System.in);
         String op = "";
@@ -54,8 +56,36 @@ public class Administrador extends Empleado{
           }
         } while (!op.equals("6"));
     }
+    
     public void registarEmpleados(){
-
+       System.out.println("Ingreso de nuevo empleado");
+       System.out.println("Ingrese Nombre del empleado");
+       String nom = sc.nextLine();
+       
+       System.out.println("Ingrese Direccion del empleado");
+       String direc = sc.nextLine();
+       
+       System.out.println("Ingrese telefono del empleado");
+       String telf = sc.nextLine();
+       
+       System.out.println("Ingrese correo electronico del empleado");
+       String correo = sc.nextLine();
+       
+       System.out.println("Ingrese fecha de inicio del empleado");
+       String fecha = sc.nextLine();
+       
+       System.out.println("Ingrese Sueldo del empleado");
+       double suel = sc.nextDouble();
+       
+       System.out.println("Ingrese Usuario del empleado");
+       String user = sc.nextLine();
+       
+       System.out.println("Ingrese contraseña del empleado");
+       String contra = sc.nextLine();
+       
+       Usuario us1 = new Usuario(user, contra);
+      
+    
     }
     public void consultaVeterinaria(){
         

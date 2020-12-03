@@ -14,6 +14,7 @@ public class Empleado {
     private Date fechaIncio;
     private double sueldo;
     
+    
     public Empleado(){
         
     }
@@ -26,6 +27,7 @@ public class Empleado {
         this.sueldo=sueldo;
         
     }
+    
     public void setNombre(String nombre){
         this.nombre=nombre;
     }

@@ -13,6 +13,9 @@ public class Cliente {
     private String telefono;
     private String direcction;
     private ArrayList<String> intereses;
+    
+    public Cliente(){
+    }
 
     public Cliente(String nombre, String cedula, String telefono, String direcction, ArrayList<String> intereses) {
         this.nombre = nombre;

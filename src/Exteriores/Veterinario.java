@@ -9,6 +9,11 @@ public class Veterinario {
     private String nombre;
     private String numero;
     private String correo;
+    
+    
+    public Veterinario(){
+        
+    }
 
     public Veterinario(String nombre, String numero, String correo) {
         this.nombre = nombre;

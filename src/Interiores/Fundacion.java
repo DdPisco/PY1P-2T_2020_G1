@@ -20,6 +20,10 @@ public class Fundacion {
     private static  ArrayList<GastoVeterinaria> gastosVeterinaria;
     private static  ArrayList<Cliente> clientes;
     private static ArrayList<Adopcion> adopciones;
+
+    public Fundacion() {
+        
+    }
     
     public static ArrayList<Usuario> getListUsuarios() {
         return listUsuarios;
@@ -36,8 +40,8 @@ public class Fundacion {
     public static void setAnimales(ArrayList<Animal> animales) {
         Fundacion.animales = animales;
     }
-
-    public static ArrayList<Veterinario> getVeterinarias() {
+    
+    public static ArrayList<Veterinario> veterinarias() {
         return veterinarias;
     }
 

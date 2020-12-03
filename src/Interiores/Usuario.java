@@ -1,6 +1,6 @@
 package Interiores;
 
-import java.util.Scanner;
+import java.util.Objects;
 
 /**
  *
@@ -11,6 +11,7 @@ public class Usuario extends Empleado {
     private String username;
     private String password;
     Usuario usu=new Usuario();
+    
     public Usuario(){
         
     }
@@ -31,17 +32,26 @@ public class Usuario extends Empleado {
         return this.password;
     }
     
-     @Override
-      public boolean equals(Object obj){
-          if(obj!= null){
-              if(obj instanceof Usuario){
-                  Usuario usu= (Usuario)obj;
-                  if (username.equals(usu.getUsuario())&& password.equals(usu.getPassword())){
+    @Override
+    public boolean equals(Object obj){
+        if(obj!= null){
+            if(obj instanceof Usuario){
+                Usuario usu= (Usuario)obj;
+                    if (username.equals(usu.getUsuario())&& password.equals(usu.getPassword())){
                       return true;
                     }
                 }
             } return false;
     
         }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 17 * hash + Objects.hashCode(this.username);
+        hash = 17 * hash + Objects.hashCode(this.password);
+        hash = 17 * hash + Objects.hashCode(this.usu);
+        return hash;
+    }
     }
 
