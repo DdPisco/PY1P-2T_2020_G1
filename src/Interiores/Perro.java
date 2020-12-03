@@ -24,4 +24,10 @@ public class Perro extends Animal {
     public void setTamanio(Tamanio tamanio) {
         this.tamanio = tamanio;
     }
+    
+    @Override
+    public String toString(){
+        return getFechaIngreso()+"  "+getNombre()+"  "+getRaza()+"  "+getSexo()+"  "+ getPeso()
+                +"  "+getEdad()+"  "+getTamanio()+ "  "+getObservaciones();
+    }
 }

@@ -14,5 +14,8 @@ public class Gato extends Animal {
     public double calcularCosto(){
        return 2.50; 
     }
-    
+    public String toString(){
+        return getFechaIngreso()+"  "+getNombre()+"  "+getRaza()+"  "+getSexo()+"  "+ getPeso()
+                +"  "+getEdad()+"  "+"\t"+ "  "+getObservaciones();
+    }
 }

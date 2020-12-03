@@ -7,9 +7,10 @@ import java.util.Scanner;
  *
  * @author nicol
  */
-public class Administrador extends Usuario{
+public class Administrador extends Empleado{
     private int cuentaBancaria;
     public Scanner sc;
+    private Usuario user;
     public void iniciarMenuOpAdmin(){
         sc=new Scanner(System.in);
         String op = "";
@@ -27,34 +28,34 @@ public class Administrador extends Usuario{
       
       op = sc.nextLine();
 
-      switch (op) {
-      case "1":
-        registarEmpleados();
-        break;
-      case "2":
-        consultaVeterinaria();
-        registrosVeterinaria();
-        break;
-      case "3":
-        registrosGastosVeterinaria();
-        break;
-      case "4":
-        calcularPresupuestosMensual();  
-        break;
-      case "5":
-        enviarCorreosAdopciones();
-        break;
-      case "6":
-        System.out.println("Sesion Cerrada");
-        break;  
-      default:
-        System.out.println("Opcion invalida");
-        break;
-      }
-    } while (!op.equals("6"));
+        switch (op) {
+          case "1":
+            registarEmpleados();
+            break;
+          case "2":
+            consultaVeterinaria();
+            registrosVeterinaria();
+            break;
+          case "3":
+            registrosGastosVeterinaria();
+            break;
+          case "4":
+            calcularPresupuestosMensual();  
+            break;
+          case "5":
+            enviarCorreosAdopciones();
+            break;
+          case "6":
+            System.out.println("Sesion Cerrada");
+            break;  
+          default:
+            System.out.println("Opcion invalida");
+            break;
+          }
+        } while (!op.equals("6"));
     }
     public void registarEmpleados(){
-        
+
     }
     public void consultaVeterinaria(){
         

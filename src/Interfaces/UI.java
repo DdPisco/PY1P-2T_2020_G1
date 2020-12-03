@@ -6,6 +6,7 @@
 package Interfaces;
 
 import Interiores.Administrador;
+import Interiores.Empleado;
 import Interiores.Funcionario;
 import Interiores.Fundacion;
 import Interiores.Usuario;
@@ -68,7 +69,7 @@ public class UI {
         
         for(Usuario u:fd.getListUsuarios()){
             if (usu.equals(u)){
-                if(u instanceof Funcionario){
+                if(u instanceof Empleado){
                     System.out.println("CREDENCIALES VALIDAS");
                     funci.iniciarMenuOpFun();
                 }else{
@@ -97,7 +98,7 @@ public class UI {
         
         for(Usuario u:fd.getListUsuarios()){
             if (usu.equals(u)){
-                if(u instanceof Administrador){
+                if(u instanceof Empleado){
                     System.out.println("CREDENCIALES VALIDAS");
                     admin.iniciarMenuOpAdmin();
                 }else{

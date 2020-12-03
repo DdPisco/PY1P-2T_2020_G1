@@ -5,6 +5,7 @@
  */
 package Interiores;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -112,5 +113,52 @@ public abstract class Animal {
     public void setAdoptado(boolean adoptado) {
         this.adoptado = adoptado;
     }
+    public String toString(){
+        return null;
+    }
     
-}
+    public static void filtrarAnimales(ArrayList<Animal> animales,String tipo, String sexo,String raza){
+        for(Animal a : animales){
+            if (tipo.toLowerCase()=="gato"){
+                if(a instanceof Gato){
+                    Gato g = (Gato)a;
+                    if (g.getSexo()==sexo.charAt(0)){
+                        if(g.getRaza() == raza.toLowerCase()){
+                            g.toString();
+                        }
+                    }else{
+                       if(g.getRaza() == raza.toLowerCase()){
+                            g.toString();
+                        } 
+                    }
+                }
+                break;
+            }else if(tipo.toLowerCase()=="perro"){
+                if(a instanceof Perro ){
+                    Perro p = (Perro)a; 
+                    if (p.getSexo()==sexo.charAt(0)){
+                        if(p.getRaza() == raza.toLowerCase()){
+                            p.toString();
+                        }
+                    }else{
+                       if(p.getRaza() == raza.toLowerCase()){
+                            p.toString();
+                        } 
+                    }
+                }
+                break;
+            }else if (tipo.toLowerCase()=="\n"){
+                if (a.getSexo()==sexo.charAt(0)){
+                        if(a.getRaza() == raza.toLowerCase()){
+                            a.toString();
+                        }
+                    }else{
+                       if(a.getRaza() == raza.toLowerCase()){
+                            a.toString();
+                        } 
+                    }
+            }            
+        }
+       
+    }
+}   
