@@ -3,9 +3,9 @@ package Interiores;
 import java.util.Date;
 
 /**
- * 
+ *
  * @author nicol
- */ 
+ */
 public class Empleado {
     private String nombre;
     private String direccion;
@@ -13,7 +13,6 @@ public class Empleado {
     private String correo;
     private Date fechaIncio;
     private double sueldo;
-    
     
     public Empleado(){
         
@@ -27,7 +26,6 @@ public class Empleado {
         this.sueldo=sueldo;
         
     }
-    
     public void setNombre(String nombre){
         this.nombre=nombre;
     }
