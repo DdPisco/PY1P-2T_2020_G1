@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import static java.util.Arrays.asList;
 import java.util.Date;
 import java.util.Scanner;
-
+import Interfaces.UI;
 /**
  *
  * @author nicol
@@ -61,7 +61,7 @@ public class Funcionario extends Empleado{
     public void registrarNuevoAnimal(){
         Animal a = null;
         System.out.print("Ingrese Fecha de Ingreso: ");
-        a.setFechaIngreso(new Date(sc.nextLine()));
+        a.setFechaIngreso(new Date( sc.nextLine()));
         System.out.print("Ingrese Nombre del Animal: ");
         a.setNombre(sc.nextLine());
         System.out.print("Ingrese Raza del Animal: ");
@@ -70,8 +70,10 @@ public class Funcionario extends Empleado{
         a.setSexo(sc.nextLine().charAt(0));
         System.out.print("Ingrese Peso del Animal: ");
         a.setPeso(sc.nextDouble());
+        sc.nextLine();
         System.out.print("Ingrese Edad del Animal: ");
         a.setEdad(sc.nextInt());
+        sc.nextLine();
         a.generarCodigo();
         if(a instanceof Perro){
             Perro p = (Perro)a;
@@ -130,7 +132,7 @@ public class Funcionario extends Empleado{
         c.setTelf(sc.nextLine());
         System.out.print("Ingrese Correo Electronico:");
         c.setCorreo(sc.nextLine());
-        System.out.print("Ingrese Correo Intereses(,):");
+        System.out.print("Ingrese Intereses(,):");
         c.setIntereses((ArrayList)asList(sc.nextLine().split(",")));
         Fundacion.getClientes().add(c);
     }
@@ -161,7 +163,10 @@ public class Funcionario extends Empleado{
         for (Animal a : Fundacion.getAnimales()){
            if(a.getCod()==cod){
                if(a.isAdoptado()==false);
+               a.setAdoptado(true);
                adop.setAnimal(a);
+               Cliente c = new Cliente();
+               c.getAdopciones().add(adop);
            }
         }
         for (Cliente c: Fundacion.getClientes()){
@@ -176,7 +181,20 @@ public class Funcionario extends Empleado{
     }  
     
     public void consultaAdopciones(){
-       for (Cliente c : Fundacion.getClientes()){
+       for (Adopcion adopcion : Fundacion.getAdopciones()){
+           adopcion.toString();
+       }
+        System.out.print("Ingrese codigo de adopcion a detallar:");
+        int cod = sc.nextInt();
+        for (Adopcion adopcion : Fundacion.getAdopciones()){
+           if(cod==adopcion.getCodAdop()){
+                System.out.print(adopcion.getFechaAdopcion()+"\t"+adopcion.getCliente().toString()+
+                        "\t"+adopcion.getAnimal().toString());
+           }
+       }
+    }
+    public void consultarRegistrados(){
+        for (Cliente c : Fundacion.getClientes()){
             System.out.println(c.getCedula()+"\t"+c.getNombre()+"\t"+c.getAdopciones().size());
         }
         System.out.print("Ingrese cedula para mostrar detalles:");
@@ -208,10 +226,9 @@ public class Funcionario extends Empleado{
                 c.setCorreo(sc.nextLine());
                 System.out.print("Ingrese Intereses(,):");
                 c.setIntereses((ArrayList)asList(sc.nextLine().split(",")));
-                System.out.println("Proceso finalizado con suceso!");
                 break;
             case "no": 
-                break;  
+                System.out.println("Proceso finalizado con suceso!");
         }
         
     }
