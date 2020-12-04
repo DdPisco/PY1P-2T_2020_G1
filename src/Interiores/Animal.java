@@ -19,7 +19,7 @@ public abstract class Animal {
     private char sexo;
     private double peso;
     private int edad;
-    private int cod;
+    private static int cod;
     private String observaciones;
     private boolean adoptado;
 
@@ -161,4 +161,18 @@ public abstract class Animal {
         }
        
     }
+    
+   public void generarCodigo(){
+       cod=+1;
+       setCod(cod);
+   }
+   
+   public Animal encontrarAnimal(ArrayList<Animal> animales, int codigo){
+       for (Animal a : animales){
+           if((a.getCod()==codigo) && (a.isAdoptado()==false)){
+               return a;
+           }
+       }
+       return null;
+   }
 }   
