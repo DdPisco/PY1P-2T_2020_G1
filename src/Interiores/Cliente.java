@@ -14,6 +14,9 @@ public class Cliente {
     private String direccion;
     private String correo;
     private ArrayList<String> intereses;
+    private ArrayList<Animal> animalesAdoptados;
+
+    
     public Cliente(){
         
     }
@@ -64,6 +67,13 @@ public class Cliente {
 
     public void setIntereses(ArrayList<String> intereses) {
         this.intereses = intereses;
+    }
+    public ArrayList<Animal> getAnimalesAdoptados() {
+        return animalesAdoptados;
+    }
+
+    public void setAnimalesAdoptados(ArrayList<Animal> animalesAdoptados) {
+        this.animalesAdoptados = animalesAdoptados;
     }
     
     public String toString(){
