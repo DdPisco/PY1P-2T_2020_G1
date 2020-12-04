@@ -176,22 +176,48 @@ public class Funcionario extends Empleado{
     }  
     
     public void consultaAdopciones(){
-       for (Adopcion adopcion : Fundacion.getAdopciones()){
-           adopcion.toString();
-       }
-        System.out.print("Ingrese codigo de adopcion a detallar:");
-        int cod = sc.nextInt();
-        for (Adopcion adopcion : Fundacion.getAdopciones()){
-           if(cod==adopcion.getCodAdop()){
-                System.out.print(adopcion.getFechaAdopcion()+"\t"+adopcion.getCliente().toString()+"\t"+adopcion.getAnimal().toString());
-           }
-       }
-    }
-    public void consultarRegistrados(){
+       for (Cliente c : Fundacion.getClientes()){
+            System.out.println(c.getCedula()+"\t"+c.getNombre()+"\t"+c.getAdopciones().size());
+        }
+        System.out.print("Ingrese cedula para mostrar detalles:");
+        for (Cliente c : Fundacion.getClientes()){
+            if(c.equals(Cliente.encontrarCliente(sc.nextLine()))){
+                c.toString();
+                for(Adopcion ad : c.getAdopciones()){
+                    if(ad.getAnimal() instanceof Gato){
+                        Gato g = (Gato) ad.getAnimal();
+                        System.out.println(g.getCod()+"\t Gato \t"+g.getSexo()+"\t"+ad.getFechaAdopcion());
+                }if(ad.getAnimal() instanceof Perro){
+                        Perro g = (Perro) ad.getAnimal();
+                        System.out.println(g.getCod()+"\t Perro \t"+g.getSexo()+"\t"+ad.getFechaAdopcion());
+                }
+                    
+                }
+            }
+        }System.out.print("Desea actualizar los datos? Si/No:");
+        switch (sc.nextLine().toLowerCase()){
+            case "si":
+                Cliente  c = null; 
+                System.out.print("Ingrese nombre del cliente:");
+                c.setNombre(sc.nextLine());
+                System.out.print("Ingrese direccion:");
+                c.setDireccion(sc.nextLine());
+                System.out.print("Ingrese Telefono:");
+                c.setTelf(sc.nextLine());
+                System.out.print("Ingrese Correo Electronico:");
+                c.setCorreo(sc.nextLine());
+                System.out.print("Ingrese Intereses(,):");
+                c.setIntereses((ArrayList)asList(sc.nextLine().split(",")));
+                System.out.println("Proceso finalizado con suceso!");
+                break;
+            case "no": 
+                break;  
+        }
         
     }
     public void cerrarSesion(){
-        
+      UI op = new UI();
+      op.iniciarSesion();
     }
     
 }
