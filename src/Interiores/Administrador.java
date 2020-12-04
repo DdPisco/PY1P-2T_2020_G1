@@ -85,8 +85,14 @@ public class Administrador extends Usuario{
        
        Usuario us1 = new Usuario(user, contra);
        
+       
+       
        for (Usuario us : Fundacion.getListUsuarios()){
-           
+           if(Fundacion.getListUsuarios().contains(us)){
+               Fundacion.getListUsuarios().add(us1);
+           }else{
+               System.out.println("el usuario ya existe");
+           }
        }
       
     
