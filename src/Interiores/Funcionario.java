@@ -183,7 +183,7 @@ public class Funcionario extends Empleado{
         int cod = sc.nextInt();
         for (Adopcion adopcion : Fundacion.getAdopciones()){
            if(cod==adopcion.getCodAdop()){
-               
+                System.out.print(adopcion.getFechaAdopcion()+"\t"+adopcion.getCliente().toString()+"\t"+adopcion.getAnimal().toString());
            }
        }
     }

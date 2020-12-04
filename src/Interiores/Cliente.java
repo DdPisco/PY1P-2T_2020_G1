@@ -69,5 +69,9 @@ public class Cliente {
     public void setIntereses(ArrayList<String> intereses) {
         this.intereses = intereses;
     }
+    
+    public String toString(){
+        return cedula+"\t"+nombre+"\t"+correo+"\t"+direccion;
+    }
    
 }

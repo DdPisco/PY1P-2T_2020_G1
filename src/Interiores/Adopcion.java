@@ -66,6 +66,15 @@ public class Adopcion {
         return null;
         
     }
+
+    public LocalDate getFechaAdopcion() {
+        return fechaAdopcion;
+    }
+
+    public void setFechaAdopcion(LocalDate fechaAdopcion) {
+        this.fechaAdopcion = fechaAdopcion;
+    }
+    
     public String toString(){
         return String.valueOf(codAdop)+"\t"+ fechaAdopcion+"\t"+animal.getCod()
                 +"\t"+animal.getNombre()+"\t"+cliente.getCedula()+"\t"+cliente.getNombre();
