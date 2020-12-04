@@ -68,13 +68,6 @@ public class Cliente {
     public void setIntereses(ArrayList<String> intereses) {
         this.intereses = intereses;
     }
-    public ArrayList<Animal> getAnimalesAdoptados() {
-        return animalesAdoptados;
-    }
-
-    public void setAnimalesAdoptados(ArrayList<Animal> animalesAdoptados) {
-        this.animalesAdoptados = animalesAdoptados;
-    }
     
         public ArrayList<Adopcion> getAdopciones() {
         return adopciones;
