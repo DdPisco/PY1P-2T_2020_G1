@@ -18,11 +18,9 @@ public class GastoVeterinaria {
         this.fecha = fecha;
         this.monto = monto;
         this.animal = animal;
-        this.listaAnimales = new ArrayList<>();
-        
-        
-        
+        this.listaAnimales = new ArrayList<>(); 
     }
+    
     
     
     

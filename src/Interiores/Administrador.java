@@ -11,7 +11,7 @@ import java.util.Scanner;
 public class Administrador extends Usuario{
     private int cuentaBancaria;
     private Scanner sc;
-    private ArrayList<Empleados> ListaEmpleados;
+    
     
     public void iniciarMenuOpAdmin(){
         sc=new Scanner(System.in);
@@ -84,6 +84,10 @@ public class Administrador extends Usuario{
        String contra = sc.nextLine();
        
        Usuario us1 = new Usuario(user, contra);
+       
+       for (Usuario us : Fundacion.getListUsuarios()){
+           
+       }
       
     
     }
