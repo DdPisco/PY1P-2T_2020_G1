@@ -14,7 +14,7 @@ public class Cliente {
     private String direccion;
     private String correo;
     private ArrayList<String> intereses;
-    private ArrayList<Animal> animalesAdoptados;
+    private ArrayList<Adopcion> adopciones;
 
     
     public Cliente(){
@@ -76,8 +76,24 @@ public class Cliente {
         this.animalesAdoptados = animalesAdoptados;
     }
     
+        public ArrayList<Adopcion> getAdopciones() {
+        return adopciones;
+    }
+
+    public void setAdopciones(ArrayList<Adopcion> adopciones) {
+        this.adopciones = adopciones;
+    }
+    
     public String toString(){
         return cedula+"\t"+nombre+"\t"+correo+"\t"+direccion;
     }
+     public Cliente encontrarCliente(String cedula){
+        for (Cliente c : Fundacion.getClientes()){
+            if(cedula.equals(c.getCedula()));
+            return c;
+            
+        }return null;
+    }
+    
    
 }
