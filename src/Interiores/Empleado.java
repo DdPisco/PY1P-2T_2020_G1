@@ -3,7 +3,7 @@ package Interiores;
 import java.util.Date;
 
 /**
- * Aldo 
+ * 
  * @author nicol
  */ 
 public class Empleado {
