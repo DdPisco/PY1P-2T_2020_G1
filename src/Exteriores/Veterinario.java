@@ -1,4 +1,3 @@
-
 package Exteriores;
 
 /**
@@ -49,4 +48,13 @@ public class Veterinario {
     }
     
     
+    
+    @Override
+    public String toString() {
+        return "Nombre: " + nombre + "\nNumero: " + numero + "\nCorreo: " + correo;
+    }
+    
+    
+    
 }
+
