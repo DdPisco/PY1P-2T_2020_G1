@@ -14,10 +14,16 @@ public class Cliente {
     private String direccion;
     private String correo;
     private ArrayList<String> intereses;
-    private ArrayList<Adopcion> adopciones;
-
     
-    public Cliente(){
+    
+    
+    public Cliente(String nombre, String cedula, String telf, String direccion, String correo, ArrayList<String> intereses) {
+        this.nombre = nombre;
+        this.cedula = cedula;
+        this.telf = telf;
+        this.direccion = direccion;
+        this.correo = correo;
+        this.intereses = intereses;
         
     }
 
@@ -64,29 +70,14 @@ public class Cliente {
     public ArrayList<String> getIntereses() {
         return intereses;
     }
-
-    public void setIntereses(ArrayList<String> intereses) {
-        this.intereses = intereses;
-    }
     
-        public ArrayList<Adopcion> getAdopciones() {
-        return adopciones;
+    public String toString(Fundacion fd){
+        for(Adopcion ad: fd.adopciones){
+            if(ad.getCliente().getCedula().equals(cedula)){
+                return cedula+"\t"+nombre+"\t"+ad.getNumConsulta();
+            }
+        }
+        return null;
     }
-
-    public void setAdopciones(ArrayList<Adopcion> adopciones) {
-        this.adopciones = adopciones;
-    }
-    
-    public String toString(){
-        return cedula+"\t"+nombre+"\t"+correo+"\t"+direccion;
-    }
-     public Cliente encontrarCliente(String cedula){
-        for (Cliente c : Fundacion.getClientes()){
-            if(cedula.equals(c.getCedula()));
-            return c;
-            
-        }return null;
-    }
-    
    
 }
