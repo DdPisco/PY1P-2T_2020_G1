@@ -1,57 +1,76 @@
 package Interiores;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 /**
  *
- * @author nicol
- * //Aldo
+ * @author nicol 
  */
 public class Usuario extends Empleado {
+
     private String username;
     private String password;
-    Usuario usu=new Usuario();
+    private String tipo;
+
+
+    public Usuario(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
+    public Usuario(String username, String password, String tipo) {
+        this(username, password);
+        this.tipo = tipo;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
     
-    public Usuario(){
-        
+    public String getUsername() {
+        return username;
     }
-    public Usuario(String username , String password){
-        this.username=username;
-        this.password=password;
+
+    public void setUsername(String username) {
+        this.username = username;
     }
-    public void setUsuario(String username){
-        this.username=username;
+
+    public void setPassword(String password) {
+        this.password = password;
     }
-    public String getUsuario(){
-        return this.username;
-    }
-    public void setPassword(String password){
-        this.password=password;
-    }
-    public String getPassword(){
+
+    public String getPassword() {
         return this.password;
     }
-    
-    @Override
-    public boolean equals(Object obj){
-        if(obj!= null){
-            if(obj instanceof Usuario){
-                Usuario usu= (Usuario)obj;
-                    if (username.equals(usu.getUsuario())&& password.equals(usu.getPassword())){
-                      return true;
-                    }
-                }
-            } return false;
-    
+
+    public Usuario usuarioExiste(Usuario u, ArrayList<Usuario> lusu) {
+        for (Usuario c : lusu) {
+            if (c.equals(u)) {
+                return c;
+            }
         }
+        return null;
+    }
 
     @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 17 * hash + Objects.hashCode(this.username);
-        hash = 17 * hash + Objects.hashCode(this.password);
-        hash = 17 * hash + Objects.hashCode(this.usu);
-        return hash;
-    }
+    public boolean equals(Object obj) {
+        //verificamos si el objeto no es null
+        if (obj != null) {
+            //verificamos que obj est ereferencioado a un objeto de tipo Empleado
+            if (obj instanceof Usuario) {
+                //hacemos casting para obtener una variables de tipo Empleado que referencia al obj al que esta apuntando obj este lo hacemos para poder tener acceso a los metodos de la clase Empleado
+                Usuario other = (Usuario) obj;
+                if (username.equals(other.getUsername()) && password.equals(other.getPassword())) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
+}
