@@ -1,22 +1,35 @@
 package Interiores;
 
+import Exteriores.GastoVeterinaria;
 import Exteriores.Veterinario;
+import Interfaces.UI;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
-import java.text.SimpleDateFormat;
-import java.text.ParseException;
+import java.lang.String;
+import java.time.LocalDate;
+import java.util.Properties;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 /**
  *
- * @author Aldo
+ * @author nicol
  */
 public class Administrador extends Usuario{
     private int cuentaBancaria;
     private Scanner sc;
+   
+    public Administrador(String usuario, String contrasenia){
+        super(usuario,contrasenia);
+    }
+
     
-    
-    public void iniciarMenuOpAdmin(){
+    public int iniciarMenuOpAdmin(Fundacion fd) throws MessagingException{
         sc=new Scanner(System.in);
         String op = "";
     System.out.println("Bienvenido Usuario Administrador");
@@ -35,22 +48,35 @@ public class Administrador extends Usuario{
 
         switch (op) {
           case "1":
-            registarEmpleados();
+            registarEmpleados(fd);
             break;
           case "2":
-            consultaVeterinaria();
-            registrosVeterinaria();
+              System.out.println("Dese consultar o registrar veterinaria? (consultar/registrar)");
+              String consul = sc.nextLine();
+              if(consul.toLowerCase().equals("consultar")){
+                consultaVeterinaria(fd);
+              }else if(consul.toLowerCase().equals("registrar")){
+                registrosVeterinaria(fd);
+              }
             break;
           case "3":
-            registrosGastosVeterinaria();
+            System.out.println("Dese consultar o registrar gatos veterinaria? (consultar/registrar)");
+              String consul2 = sc.nextLine();
+              if(consul2.toLowerCase().equals("consultar")){
+                consultaGastosVeterinaria(fd);
+              }else if(consul2.toLowerCase().equals("registrar")){
+                registrosVeterinaria(fd);
+              }
+            registrosGastosVeterinaria(fd);
             break;
           case "4":
-            calcularPresupuestosMensual();  
+            calcularPresupuestosMensual(fd);  
             break;
           case "5":
-            enviarCorreosAdopciones();
+            enviarCorreosAdopciones(fd);
             break;
           case "6":
+             
             System.out.println("Sesion Cerrada");
             break;  
           default:
@@ -58,27 +84,11 @@ public class Administrador extends Usuario{
             break;
           }
         } while (!op.equals("6"));
-    }
-    /**
-     * Permite convertir un String en fecha (Date).
-     * @param fecha Cadena de fecha dd/MM/yyyy
-     * @return Objeto Date
-     */
-    public static Date ParseFecha(String fecha)
-    {
-        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-        Date fechaDate = null;
-        try {
-            fechaDate = formato.parse(fecha);
-        } 
-        catch (ParseException ex) 
-        {
-            System.out.println(ex);
-        }
-        return fechaDate;
+        return 6;
     }
     
-    public void registarEmpleados(){
+    public void registarEmpleados(Fundacion fd){
+       sc = new Scanner(System.in);
        System.out.println("Ingreso de nuevo empleado");
        System.out.println("Ingrese Nombre del empleado");
        String nom = sc.nextLine();
@@ -93,111 +103,152 @@ public class Administrador extends Usuario{
        String correo = sc.nextLine();
        
        System.out.println("Ingrese fecha de inicio del empleado");
-       String fecha1 = sc.nextLine();
+       String fecha = sc.nextLine();
        
        System.out.println("Ingrese Sueldo del empleado");
        double suel = sc.nextDouble();
-       sc.nextLine();
        
        System.out.println("Ingrese Usuario del empleado");
        String user = sc.nextLine();
        
        System.out.println("Ingrese contraseña del empleado");
        String contra = sc.nextLine();
-       
-       Usuario us1 = new Usuario(user, contra);
-              
-       Date fecha = Administrador.ParseFecha(fecha1);
-       
-       Fundacion.getListEmpleados().add(new Empleado(nom,direc,telf,correo,fecha,suel));
-       
-       for (Usuario us : Fundacion.getListUsuarios()){
-           if(Fundacion.getListUsuarios().contains(us1)){
-               System.out.println("el usuario ya existe");
-           }else{
-               Fundacion.getListUsuarios().add(us1);
-           }
-       }
-      
-    
-    }
-    public ArrayList consultaVeterinaria(){
-        System.out.println("Consulta de Veterinarias");
-        return Fundacion.veterinarias();
-    }
-    public void registrosVeterinaria(){
-        System.out.println("Registro de veterinarias");
-        
-        System.out.println("Ingrese el nombrede la veterinaria");
-        String nombVet = sc.nextLine();
-        
-        System.out.println("Ingrese el numero de la veterinaria");
-        String telfVet = sc.nextLine();
-        
-        System.out.println("Ingrese el correo de la veterinaria");
-        String correoVet = sc.nextLine();
-        
-        Veterinario vet1 = new Veterinario(nombVet,telfVet,correoVet);
-        
-        for (Veterinario vet : Fundacion.veterinarias()){
-           if(Fundacion.getListUsuarios().contains(vet1)){
-               System.out.println("el usuario ya existe");
-           }else{
-               Fundacion.veterinarias().add(vet1);
-           }
+       System.out.println("Que tipo de empleado es? (Administrador,Funcionario)");
+       String dato = sc.nextLine();
+       if(dato.toLowerCase().equals("funcionario")){
+           Usuario us1 = new Funcionario(user, contra);
+           fd.listUsuarios.add(us1);
+       }else if(dato.toLowerCase().equals("administrador")){
+           System.out.print("Ingrese el numero de cuenta: ");
+           int bc = sc.nextInt();
+           setCuentaBancaria(bc);
+           Usuario us1 = new Funcionario(user, contra);
+           fd.listUsuarios.add(us1);
        }
     }
-    public void registrosGastosVeterinaria(){
-        
-        
+    public void consultaVeterinaria(Fundacion fd){
+        for(Veterinario v: fd.veterinarias){
+            System.out.println(v.toString());
+        }
     }
-    public double calcularPresupuestosMensual(){
-        
-        return 0;
-        
-     
-    }
-    private double CalculodeEmpleados(){
-        double totsueldo_empleados=0;
-        double TotalAdmin = 0;
-        for (Empleado e : Fundacion.getListEmpleados()){
-            double suel= e.getSueldo();
-            totsueldo_empleados += suel;
-    
-        }return TotalAdmin = totsueldo_empleados+150.0;
-  
+    public void registrosVeterinaria(Fundacion fd){
+        sc = new Scanner(System.in);
+        System.out.print("Ingrese el nombre de la veterinaria: ");
+        String nombre = sc.nextLine();
+        System.out.print("Ingrese el telefono de la veterinaria: ");
+        String telefono = sc.nextLine();
+        System.out.print("Ingrese el correo de la veterinaria: ");
+        String correo = sc.nextLine();
+        Veterinario v = new Veterinario(nombre,telefono,correo);
+        fd.veterinarias.add(v);
     }
     
-    private double CalculodeAnimales(){
-        
-        for (Animal a : Fundacion.getAnimales()){
-            double TotalAnimales;
-            double TotalPerros = 0;
-            double TotalGatos = 0;
-            TotalAnimales = TotalGatos + TotalPerros;
-            if (a instanceof Perro ){
-                Perro p = (Perro)a;
-                double costosPerro;
-                costosPerro = p.calcularCosto();
-                TotalPerros+=costosPerro;
-                return TotalPerros;
-                
-            }else if (a instanceof Gato){
-                Gato g = (Gato)a;
-                double costosGato;
-                costosGato = a.calcularCosto();
-                TotalGatos+=costosGato;
-                return TotalGatos;    
+    private void consultaGastosVeterinaria(Fundacion fd) {
+        for(GastoVeterinaria gt: fd.gastosVeterinaria){
+            System.out.println(gt.toString());
+        }
+    }
+    
+    public void registrosGastosVeterinaria(Fundacion fd){
+       sc = new Scanner(System.in);
+       System.out.println("Ingrese Fecha de Atencion");
+       String fecha = sc.nextLine();
+       LocalDate d= LocalDate.parse(fecha);
+       
+       System.out.println("Ingrese Monto Incurriodo");
+       double monto = sc.nextDouble();
+       sc.nextLine();
+       
+       System.out.println("Ingrese el nombre del animal que se Atendio");
+       String animal = sc.nextLine();
+       for(Animal a: fd.listAnimales){
+           if(a.getNombre().equals(animal)){
+               GastoVeterinaria gasto = new GastoVeterinaria(d,monto,a);
+               fd.gastosVeterinaria.add(gasto);
+           }
+       }
+    }
+    public void calcularPresupuestosMensual(Fundacion fd){
+        double gastosAd = 150;
+        double gastosP = 0;
+        double gastosG = 0;
+        double gastosVete = 0;
+        for(Usuario u: fd.listUsuarios){
+            gastosAd += u.getSueldo();
+        }
+        for(Animal ani: fd.listAnimales){
+            if(ani instanceof Perro){
+                Perro p = (Perro)ani;
+                gastosP += p.calcularCosto();
+            }else if(ani instanceof Gato){
+                Gato g = (Gato)ani;
+                gastosG += g.calcularCosto();
             }
+        }
+        for(GastoVeterinaria gvete: fd.gastosVeterinaria){
+            gastosVete += gvete.getMonto();
+        }
+        double total = gastosAd+gastosP+gastosG+gastosVete;
+        System.out.println("El gasto de Perros es: "+gastosP);
+        System.out.println("El gasto de Gatos es:"+gastosG);
+        System.out.println("El gasto de los Administrativos es: "+gastosAd);
+        System.out.println("El gasto de la Veterinaria es:"+gastosVete);
+        System.out.println("El total del presupuesto estimado es: "+total);
+    }
+    public void enviarCorreosAdopciones(Fundacion fd) throws AddressException, MessagingException{
+        Properties props = new Properties();
+
+        // Nombre del host de correo, es smtp.gmail.com
+        props.setProperty("mail.smtp.host", "smtp.gmail.com");
+
+        // TLS si está disponible
+        props.setProperty("mail.smtp.starttls.enable", "true");
+
+        // Puerto de gmail para envio de correos
+        props.setProperty("mail.smtp.port","587");
+
+        // Nombre del usuario
+        for(Cliente c: fd.clientes){
+            for(String interes: c.getIntereses()){
+                for(Animal a: fd.listAnimales){
+                    if(a.getObservaciones().contains(interes)){
+                        props.setProperty("mail.smtp.user", c.getCorreo());
+                        // Si requiere o no usuario y password para conectarse.
+                        props.setProperty("mail.smtp.auth", "true");
+
+                        Session session = Session.getDefaultInstance(props);
+
+                        // Para obtener un log de salida más extenso
+                        session.setDebug(true);
+                        MimeMessage message = new MimeMessage(session);
+
+                        // Quien envia el correo
+                        message.setFrom(new InternetAddress("AmigosDeCuatroPatas@gmail.com"));
+
+                        // A quien va dirigido
+                        message.addRecipient(Message.RecipientType.TO, new InternetAddress(c.getCorreo()));
+
+                        message.setSubject("Animales disponibles para tu interes.");
+                        if(a instanceof Perro){
+                            Perro p = (Perro)a;
+                            message.setText(p.toString());
+                        }
+                        if(a instanceof Gato){
+                            Gato g = (Gato)a;
+                            message.setText(g.toString());
+                        }
+                            
+                    }
+                }
+            }
+            
+        }
         
-        return TotalAnimales = TotalPerros + TotalGatos;
-        }return -1;
     }
     
-    public void enviarCorreosAdopciones(){
-        
-    }
-    public void cerrrarSesion(){    
+    
+    
+    public void cerrrarSesion(Fundacion fd){
         
     }
    
@@ -207,5 +258,7 @@ public class Administrador extends Usuario{
     public int getCuentaBancaria(){
         return this.cuentaBancaria;
     }
+
+    
 
 }
