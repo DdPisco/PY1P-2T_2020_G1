@@ -13,11 +13,12 @@ public class Adopcion {
         
     }
     
-    public Adopcion(Cliente cliente, Animal animal,int numConsulta, int codAdop){
+    public Adopcion(LocalDate fechaAdopcion,Cliente cliente, Animal animal,int numConsulta, int codAdop){
         this.cliente=cliente;
         this.animal=animal;
         this.codAdop=codAdop;
         this.numConsulta=numConsulta;
+        this.fechaAdopcion = fechaAdopcion;
         
     }
     
@@ -62,10 +63,7 @@ public class Adopcion {
         this.codAdop = codAdop;
     }
     
-    public String getCedulaCliente(){
-        return null;
-        
-    }
+    
 
     public LocalDate getFechaAdopcion() {
         return fechaAdopcion;
@@ -76,8 +74,12 @@ public class Adopcion {
     }
     
     public String toString(){
-        return String.valueOf(codAdop)+"\t"+ fechaAdopcion+"\t"+animal.getCod()
-                +"\t"+animal.getNombre()+"\t"+cliente.getCedula()+"\t"+cliente.getNombre();
+        if(animal instanceof Perro){
+            return getNumConsulta()+"\t"+"perro"+"\t"+animal.getSexo()+"\t"+fechaAdopcion;
+        }else if(animal instanceof Gato){
+            return getNumConsulta()+"\t"+"gato"+"\t"+animal.getSexo()+"\t"+fechaAdopcion;
+        }
+        return getNumConsulta()+"\t"+"otro"+"\t"+animal.getSexo()+"\t"+fechaAdopcion;
     }
    
     
