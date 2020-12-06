@@ -31,9 +31,19 @@ public class Administrador extends Usuario{
     
     public int iniciarMenuOpAdmin(Fundacion fd) throws MessagingException{
         sc=new Scanner(System.in);
-        String op = "";
+        
     System.out.println("Bienvenido Usuario Administrador");
-    do {
+    System.out.println("1. Registrar Empleado");
+      System.out.println("2. Consultar y Registrar Veterinarias");
+      System.out.println("3. Consultar y Registrar Gasto Veterinaria ");
+      System.out.println("4. Calcular Presupuesto Mensual ");
+      System.out.println("5. Enviar Correo a Interesados ");
+      System.out.println("6. Cerrar Sesion");
+      System.out.println("Ingrese opcion");
+      
+      
+      String op = sc.nextLine();
+    while (!op.equals("6")) {
         
       System.out.println("1. Registrar Empleado");
       System.out.println("2. Consultar y Registrar Veterinarias");
@@ -51,13 +61,18 @@ public class Administrador extends Usuario{
             registarEmpleados(fd);
             break;
           case "2":
-              System.out.println("Dese consultar o registrar veterinaria? (consultar/registrar)");
-              String consul = sc.nextLine();
-              if(consul.toLowerCase().equals("consultar")){
+              String option;
+        System.out.println("1.Consulta de Veterinarias");
+        System.out.println("2.Registro de Veterinarias");
+        System.out.println("Ingrese una opcion: ");
+        option=sc.nextLine();
+        switch (option){
+            case "1":
                 consultaVeterinaria(fd);
-              }else if(consul.toLowerCase().equals("registrar")){
+                break;
+            
+            case "2":
                 registrosVeterinaria(fd);
-              }
             break;
           case "3":
             System.out.println("Dese consultar o registrar gatos veterinaria? (consultar/registrar)");
@@ -67,7 +82,6 @@ public class Administrador extends Usuario{
               }else if(consul2.toLowerCase().equals("registrar")){
                 registrosVeterinaria(fd);
               }
-            registrosGastosVeterinaria(fd);
             break;
           case "4":
             calcularPresupuestosMensual(fd);  
@@ -83,7 +97,8 @@ public class Administrador extends Usuario{
             System.out.println("Opcion invalida");
             break;
           }
-        } while (!op.equals("6"));
+        } 
+    }
         return 6;
     }
     
@@ -125,6 +140,7 @@ public class Administrador extends Usuario{
            Usuario us1 = new Funcionario(user, contra);
            fd.listUsuarios.add(us1);
        }
+       sc.nextLine();
     }
     public void consultaVeterinaria(Fundacion fd){
         for(Veterinario v: fd.veterinarias){
@@ -141,6 +157,7 @@ public class Administrador extends Usuario{
         String correo = sc.nextLine();
         Veterinario v = new Veterinario(nombre,telefono,correo);
         fd.veterinarias.add(v);
+        sc.nextLine();
     }
     
     private void consultaGastosVeterinaria(Fundacion fd) {
@@ -167,6 +184,7 @@ public class Administrador extends Usuario{
                fd.gastosVeterinaria.add(gasto);
            }
        }
+       sc.nextLine();
     }
     public void calcularPresupuestosMensual(Fundacion fd){
         double gastosAd = 150;
@@ -248,10 +266,7 @@ public class Administrador extends Usuario{
     
     
     
-    public void cerrrarSesion(Fundacion fd){
-        
-    }
-   
+    
     public void setCuentaBancaria(int cuentaBancaria){
         this.cuentaBancaria=cuentaBancaria;       
     }
