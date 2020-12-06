@@ -5,6 +5,7 @@
  */
 package Interiores;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -13,10 +14,11 @@ import java.util.Date;
  * @author Dustin Pisco
  */
 public abstract class Animal {
-    private Date fechaIngreso;
+
+    private LocalDate fechaIngreso;
     private String nombre;
     private String raza;
-    private char sexo;
+    private String sexo;
     private double peso;
     private int edad;
     private static int cod;
@@ -26,27 +28,25 @@ public abstract class Animal {
     public Animal() {
     }
 
-    
-    public Animal(Date fechaIngreso, String nombre, String raza, char sexo, double peso, int edad, int cod, String observaciones) {
+    public Animal(LocalDate fechaIngreso, String nombre, String raza, String sexo, double peso, int edad, String observaciones) {
         this.fechaIngreso = fechaIngreso;
         this.nombre = nombre;
         this.raza = raza;
         this.sexo = sexo;
         this.peso = peso;
         this.edad = edad;
-        this.cod = cod;
+        this.cod = 1;
         this.observaciones = observaciones;
-        this.adoptado=false;
+        this.adoptado = false;
     }
 
-    public  abstract double calcularCosto();
-    
-    
-    public Date getFechaIngreso() {
+    public abstract double calcularCosto();
+
+    public LocalDate getFechaIngreso() {
         return fechaIngreso;
     }
 
-    public void setFechaIngreso(Date fechaIngreso) {
+    public void setFechaIngreso(LocalDate fechaIngreso) {
         this.fechaIngreso = fechaIngreso;
     }
 
@@ -66,11 +66,11 @@ public abstract class Animal {
         this.raza = raza;
     }
 
-    public char getSexo() {
+    public String getSexo() {
         return sexo;
     }
 
-    public void setSexo(char sexo) {
+    public void setSexo(String sexo) {
         this.sexo = sexo;
     }
 
@@ -113,66 +113,83 @@ public abstract class Animal {
     public void setAdoptado(boolean adoptado) {
         this.adoptado = adoptado;
     }
-    public String toString(){
+
+    public String toString(Animal a) {
+        if (a instanceof Perro) {
+            Perro p = (Perro) a;
+            return p.toString();
+        } else if (a instanceof Gato) {
+            Gato g = (Gato) a;
+            return g.toString();
+        }
         return null;
     }
-    
-    public static void filtrarAnimales(ArrayList<Animal> animales,String tipo, String sexo,String raza){
-        for(Animal a : animales){
-            if (tipo.toLowerCase()=="gato"){
-                if(a instanceof Gato){
-                    Gato g = (Gato)a;
-                    if (g.getSexo()==sexo.charAt(0)){
-                        if(g.getRaza() == raza.toLowerCase()){
-                            g.toString();
+
+    public static void filtrarAnimales(ArrayList<Animal> lAnimales, String tipo, String sexo, String raza) {
+        for (Animal a : lAnimales) {
+            if (tipo.toLowerCase().equals("gato")) {
+                if (a instanceof Gato) {
+                    Gato g = (Gato) a;
+                    if (sexo==g.getSexo()) {
+                        if (g.getRaza()==raza.toLowerCase()) {
+                            System.out.println(g.toString());
                         }
-                    }else{
-                       if(g.getRaza() == raza.toLowerCase()){
-                            g.toString();
-                        } 
+                    } else {
+                        if (g.getRaza()==raza.toLowerCase()) {
+                            System.out.println(g.toString());
+                        }else{
+                            System.out.println(g.toString());
+                        }
                     }
                 }
-                break;
-            }else if(tipo.toLowerCase()=="perro"){
-                if(a instanceof Perro ){
-                    Perro p = (Perro)a; 
-                    if (p.getSexo()==sexo.charAt(0)){
-                        if(p.getRaza() == raza.toLowerCase()){
-                            p.toString();
+            } else if (tipo.toLowerCase().equals("perro")) {
+                if (a instanceof Perro) {
+                    Perro p = (Perro) a;
+                    if (sexo==p.getSexo()) {
+                        if (p.getRaza()==raza.toLowerCase()) {
+                            System.out.println(p.toString());
+                        }else{
+                            System.out.println(p.toString());
                         }
-                    }else{
-                       if(p.getRaza() == raza.toLowerCase()){
-                            p.toString();
-                        } 
+                    } else {
+                        if (p.getRaza()==raza.toLowerCase()) {
+                            System.out.println(p.toString());
+                        }else{
+                            System.out.println(p.toString());
+                        }
                     }
                 }
-                break;
-            }else if (tipo.toLowerCase()=="\n"){
-                if (a.getSexo()==sexo.charAt(0)){
-                        if(a.getRaza() == raza.toLowerCase()){
-                            a.toString();
-                        }
+            } else{
+                if (sexo==a.getSexo()) {
+                    if (a.getRaza()==raza.toLowerCase()) {
+                        System.out.println(a.toString(a));
                     }else{
-                       if(a.getRaza() == raza.toLowerCase()){
-                            a.toString();
-                        } 
+                        System.out.println(a.toString(a));
                     }
-            }            
+                } else {
+                    if (a.getRaza()==raza.toLowerCase()) {
+                        System.out.println(a.toString(a));
+                    }else{
+                        System.out.println(a.toString(a));
+                    }
+                }
+            }
         }
-       
+
     }
-    
-   public void generarCodigo(){
-       cod=+1;
-       setCod(cod);
-   }
-   
-   public Animal encontrarAnimal(ArrayList<Animal> animales, int codigo){
-       for (Animal a : animales){
-           if((a.getCod()==codigo) && (a.isAdoptado()==false)){
-               return a;
-           }
-       }
-       return null;
-   }
-}   
+
+    public void generarCodigo() {
+        cod += 1;
+        setCod(cod);
+    }
+
+    public Animal encontrarAnimal(ArrayList<Animal> animales, int codigo) {
+        for (Animal a : animales) {
+            if ((a.getCod() == codigo) && (a.isAdoptado() == false)) {
+                return a;
+            }
+        }
+        return null;
+    }
+
+}
